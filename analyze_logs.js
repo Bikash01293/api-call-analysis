@@ -45,42 +45,42 @@ function getStatusCodeCount(apiCalls) {
 
 // Function to display the results in a formatted table
 function displayResults(statusCodeCountMap) {
-    const formattedData = Array.from(statusCodeCountMap.entries()).map(
-      ([statusCode, count]) => ({
-        statusCode,
-        count,
-      })
-    );
-  
-    const statusCodes = {
-      500: 'Server Error',
-      404: 'Not Found',
-      200: 'OK',
-      304: 'Not Changed',
-    };
-  
-    const formattedTableData = formattedData
-      .filter((data) => statusCodes[data.statusCode]) // Filter out unwanted status codes
-      .map((data) => ({
-        Status: statusCodes[data.statusCode],
-        statusCode: data.statusCode,
-        count: data.count,
-      }));
-  
-    // Create a new table instance
-    const table = new Table({
-      head: ["(index)", "statusCode", "count"],
-    });
-  
-    // Add data to the table
-    formattedTableData.forEach(({ Status, statusCode, count }) => {
-      table.push([Status, statusCode, count]);
-    });
-  
-    // Display the table
-    console.log(table.toString());
-  }
-  
+  const formattedData = Array.from(statusCodeCountMap.entries()).map(
+    ([statusCode, count]) => ({
+      statusCode,
+      count,
+    })
+  );
+
+  const statusCodes = {
+    500: 'Server Error',
+    404: 'Not Found',
+    200: 'OK',
+    304: 'Not Changed',
+  };
+
+  const formattedTableData = formattedData
+    .filter((data) => statusCodes[data.statusCode]) // Filter out unwanted status codes
+    .map((data) => ({
+      Status: statusCodes[data.statusCode],
+      statusCode: data.statusCode,
+      count: data.count,
+    }));
+
+  // Create a new table instance
+  const table = new Table({
+    head: ["(index)", "statusCode", "count"],
+  });
+
+  // Add data to the table
+  formattedTableData.forEach(({ Status, statusCode, count }) => {
+    table.push([Status, statusCode, count]);
+  });
+
+  // Display the table
+  console.log(table.toString());
+}
+
 
 // Main function to read the log file and process the data
 function analyzeLogFile(logFilePath) {
@@ -98,13 +98,10 @@ function analyzeLogFile(logFilePath) {
 }
 
 //Array of file path
-const logFilePath = ['logs/prod-api-prod-out.log', 'logs/api-dev-out.log', 'logs/api-prod-out.log']
+const logFilePath = ['logs/prod-api-prod-out.log', 'logs/api-dev-out.log', 'logs/api-prod-out.log'];
 
 // Executing each log file.
 logFilePath.forEach(path => {
-    // function with parameter with the path to log file.
-    analyzeLogFile(path);
+  // function with parameter with the path to log file.
+  analyzeLogFile(path);
 });
-
-
-
